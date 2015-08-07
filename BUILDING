@@ -1,0 +1,41 @@
+===================
+System requirements
+===================
+
+This requires a "working version" of SML/NJ on a POSIX system. It's
+best to use version 110.49 or later. Earlier versions have
+incompatibilities, bugs, or both.
+
+
+=============
+Configuration
+=============
+
+Modify the parameters at the start of 'build' as appropriate for your
+system.
+
+These settings may be determined for you automatically by a fancy
+configuration program in a future release.
+
+
+========
+Building
+========
+
+All sources may be built by running the 'build' script in this
+directory. It does a clean re-build of all source files and stabilizes
+all libraries produced. The build script is not appropriate for use
+during development. Use the standard SML/NJ CM mechanisms if you are
+changing the code and don't want to recompile everything each time.
+
+[There is probably a better way to do this, but I haven't figured one
+out yet.]
+
+
+===================
+Using the libraries
+===================
+
+After building, include libpq/sources.cm in an SML/NJ project's .cm
+file. The libraries are stabilized, so people without write access to
+the directory can use them without problems.

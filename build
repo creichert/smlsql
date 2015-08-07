@@ -1,0 +1,26 @@
+#!/bin/sh
+
+SMLBIN=/usr/local/sml/bin
+POSTGRES_INCLUDE=/usr/include/postgresql
+
+if [ -d .cm ] ; then
+    rm -rf .cm
+fi
+if [ -d libpq/.cm ] ; then
+    rm -rf libpq/.cm
+fi
+if [ -d libpq/FFI/.cm ] ; then
+    rm -rf libpq/FFI/.cm
+fi
+
+if ! cat build.sml | $SMLBIN/sml ; then
+    exit 1
+fi
+
+cd libpq
+
+$SMLBIN/ml-nlffigen -d FFI -lh LibpqH.libh -include ../libpq-h.sml -cm libpq.h.cm -D__builtin_va_list="void*" $POSTGRES_INCLUDE/libpq-fe.h
+
+if ! cat build.sml | $SMLBIN/sml ; then
+    exit 1
+fi
