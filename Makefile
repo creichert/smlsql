@@ -10,7 +10,6 @@ POSTGRES_INCLUDE=/usr/include/postgresql
 # $ dpkg --add-architecture i386
 # $ apt-get update
 # $ apt-get install libpq5:i386
-#
 
 build: smlnj
 	@echo "== Standard ML Postgresql Bindings =="
@@ -27,18 +26,13 @@ smlnj:
 	sml build.sml
 
 test:
-	sml bin/go-nj.sml -lpq
+	sml bin/go-nj.sml
 	bin/.mkexec `which sml` `pwd` pq-test
 	./bin/pq-test
-
-top:
-	sml src/main.sml
-	@#bin/.mkexec `which sml` `pwd` app
 
 clean:
 	rm -rf libpq/FFI/.cm
 	rm -rf libpq/.cm
 	rm -rf .cm
-
 
 .PHONY: clean mlton smlnj

@@ -1,4 +1,20 @@
+(*
 
+Load toplevel:
+
+CM.autoload "pq-test.cm";
+
+(*
+CM.autoload "smlsql.cm";
+CM.autoload "libpq/libpq.h.cm";
+CM.autoload "libpq/sources.cm";
+use "libpq/build.sml";
+use "libpq/libpq-h.sml";
+use "libpq/pg.sml";
+use "build.sml";
+*)
+
+*)
 
 structure PqTest =
 struct
@@ -6,12 +22,12 @@ struct
 fun main (name,args) =
   let
       val c = PgClient.conn "host=127.0.0.1 dbname=test user=test password=test"
-      val q = PgClient.query c "select * from test2;"
+      val t = PgClient.query c "select 2 + 2 ;" ;
+      (* val _ = PgClient.query c "create table if not exists test(field1 text);"; *)
+      val q = PgClient.query c "insert into test values ('one'); select * from test;"
   in
       print "selecting data from postgresql\n"
-    ; PgClient.query c "drop table if exists test;"
-    ; PgClient.query c "create table test(field1 varchar(20));"
-    ; PgClient.query c "insert into test values ('one');"
+    ; map print (List.concat t)
     ; map print (List.concat q)
     ; PgClient.close c
     ; print "done\n"
