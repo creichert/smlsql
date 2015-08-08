@@ -2,17 +2,23 @@
 
 Load toplevel:
 
-CM.autoload "pq-test.cm";
+1) Load this file into sml toplevel. Some errors will popup, that's okay.
 
-(*
+2) Fix the errors
+
+   - CM.autoload "libpq/FFI/libpq.h.cm";
+   - CM.autoload "libpq/sources.cm";
+
+
+Other useful load commands:
+
 CM.autoload "smlsql.cm";
-CM.autoload "libpq/libpq.h.cm";
+CM.autoload "pq-test.cm";
 CM.autoload "libpq/sources.cm";
-use "libpq/build.sml";
+
 use "libpq/libpq-h.sml";
 use "libpq/pg.sml";
 use "build.sml";
-*)
 
 *)
 
