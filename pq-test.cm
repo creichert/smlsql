@@ -17,13 +17,9 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *)
 
-Library
-	signature SQL_DRIVER
-	signature SQL_CLIENT
-	functor SqlClient
-is
+Group is
 	$/basis.cm
-
-	sql_driver.sig
-	sql_client.sig
-	sql_client.sml
+	$/smlnj-lib.cm
+	libpq/sources.cm
+	libpq/FFI/libpq.h.cm
+	pq-test.sml

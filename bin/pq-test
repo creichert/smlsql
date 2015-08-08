@@ -1,0 +1,2 @@
+#! /bin/sh
+exec "/usr/bin/sml" @SMLverbose @SMLcmdname=$0 @SMLload="/media/Becky/workspace/sml/sml-test/smlsql/bin/.heapimg" "$@"
